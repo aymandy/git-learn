@@ -30,7 +30,7 @@ jobs:
     - name: Configured my AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with: 
-        aws-access-key-id      : ${{ sexrets.MY_AWS_KEY_NAME }}
+        aws-access-key-id      : ${{ secrets.MY_AWS_KEY_NAME }}
         aws-secret-access-key : ${{ secrets.MY_AWS_KEY_PASS }}
         aws-region             : ${{ env.AWS_REGION_NAME }}
         
