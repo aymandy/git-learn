@@ -1,0 +1,27 @@
+#-------------------------------
+#
+#Github comment
+#
+#-------------------------------------
+name: My-GithubActions-deploy
+
+on: 
+  push:
+    branches:
+      - master
+      
+jobs:
+  my_testing:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - name: Print Hello Message
+      run : echo "hello testing"
+    
+    
+  my_deploy:  
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Print Hello Message
+      run : echo "hello deploy"
