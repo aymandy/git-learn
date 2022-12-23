@@ -1,12 +1,15 @@
-#-------------------------------
+#---------------------------------------------------------------------
+# GitHub Action Workflow to Deploy Flask App to AWS ElasticBeanstalk
 #
-#Github comment
+# Version      Date        Info
+# 1.0          2022        Initial Version
 #
-#-------------------------------------
+# copied from Denis Astahov ADV-IT Copyleft (c) 2019
+#---------------------------------------------------------------------
 name: CI-CD-Pipline-to-aws-ElasticBeanstalk
 env:
   EB_PACKAGE_S3_BUCKET_NAME : "flask-app-git-hub-action"
-  EB_APPLICATION_NAME       : "my-flask"
+  EB_APPLICATION_NAME       : "Myflask"
   EB_ENVIRONMENT_NAME       : "Myflask-env"
   DEPLOY_PACKAGE_NAME       : "flask_app_${{ github.sha }}.zip"
   AWS_REGION_NAME           : "eu-central-1"
@@ -31,7 +34,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with: 
         aws-access-key-id      : ${{ secrets.MY_AWS_KEY_NAME }}
-        aws-secret-access-key : ${{ secrets.MY_AWS_KEY_PASS }}
+        aws-secret-access-key  : ${{ secrets.MY_AWS_KEY_PASS }}
         aws-region             : ${{ env.AWS_REGION_NAME }}
         
     - name: Copy Deployment package to S3 bucket
@@ -49,15 +52,15 @@ jobs:
       - name: Configure my AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with: 
-          aws-access-key-id      : ${{ secrets.MY_AWS_KEY_NAME }}
-          aws-secret-access-key : ${{ secrets.MY_AWS_KEY_PASS }}
+          aws-access-key-id      : ${{ secrets.MY_AWS_ACCESS_KEY }}
+          aws-secret-access-key  : ${{ secrets.MY_AWS_SECRET_KEY }}
           aws-region             : ${{ env.AWS_REGION_NAME }}
         
-      - name: Create new EB APP  
+      - name: Create new EB APP Version 
         run : |
          aws elasticbeanstalk create-application-version \
          --application-name ${{ env.EB_APPLICATION_NAME }} \
-         --sourse-bundle S3Bucket="${{ env.EB_PACKAGE_S3_BUCKET_NAME }}",S3Key-"${{ env.DEPLOY_PACKAGE_NAME }} \
+         --sourse-bundle S3Bucket="${{ env.EB_PACKAGE_S3_BUCKET_NAME }}",S3Key="${{ env.DEPLOY_PACKAGE_NAME }} \
          --version-label "Ver-${{ github.sha }}" \
          --description "CommitSHA-${{ github.sha }}"
         
