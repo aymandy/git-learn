@@ -70,14 +70,4 @@ jobs:
       - name: Print Happy Message for CD finish
         run : echo "CD Pipline part Finished successfully!"
      
-     
-     
-     
-        
- # my_deploy:  
- #  runs-on: ubuntu-latest
- #  needs: [my_testing]
- #  
- #  steps:
- #  - name: Print Hello Message
- #   run : echo "hello deploy"
+
