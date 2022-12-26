@@ -5,7 +5,7 @@ Status of last Deployment:<br>
 <br>
 
 
-To run the application, you need to create a bucket in s3 and a python application of version 3.6-3.8 in an elastic bench, in the region eu-central-1
+To run the application: you need to create a bucket in s3 and a python application of version 3.6-3.8 in an elastic bench, in the region eu-central-1, user with access polisy EB, S3
 
 Bucket name: flask-app-git-hub-action \
 Application Name: my-flask \
